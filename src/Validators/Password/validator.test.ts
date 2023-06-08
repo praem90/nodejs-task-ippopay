@@ -31,6 +31,9 @@ describe('Validate Password', () => {
     test('Digit And Repeat failuire', () => {
         expect(PasswordValidator('ABaaac111')).toBe(2);
     });
-
+    
+    test('Digit And Repeat failuire', () => {
+        expect(PasswordValidator('1337C0d3')).toBe(0);
+    });
 });
 
