@@ -1,6 +1,6 @@
-import { caseAndDigitValidtor } from "./caseAndDigitValidator";
-import { lengthValidator } from "./lengthValidator";
-import { repeatingCharValidator } from "./repeatingCharValidator";
+import { caseAndDigitValidtor } from "./case-and-digit-validator";
+import { lengthValidator } from "./length-validator";
+import { repeatingCharValidator } from "./repeating-char-validator";
 
 export default (password: string): number => {
     const validators = [

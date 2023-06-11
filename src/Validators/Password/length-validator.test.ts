@@ -1,5 +1,5 @@
 import { describe, expect, test } from "@jest/globals";
-import { lengthValidator } from "./lengthValidator";
+import { lengthValidator } from "./length-validator";
 import { ValidatorResponse } from ".";
 
 describe('Length Validator', () => {

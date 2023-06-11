@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 import { ValidatorResponse } from ".";
-import { repeatingCharValidator } from "./repeatingCharValidator";
+import { repeatingCharValidator } from "./repeating-char-validator";
 
 
 describe('Repeating char Validator', () => {

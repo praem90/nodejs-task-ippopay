@@ -1,5 +1,5 @@
 import { describe, expect, test } from "@jest/globals";
-import { caseAndDigitValidtor } from "./caseAndDigitValidator";
+import { caseAndDigitValidtor } from "./case-and-digit-validator";
 import { ValidatorResponse } from ".";
 
 
