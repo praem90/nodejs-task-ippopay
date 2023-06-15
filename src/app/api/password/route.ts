@@ -14,24 +14,59 @@ export async function POST(request: NextRequest) {
     }
     
     const steps = PasswordValidator(data.password)
+    let message = "Your password is strong!!";
+    
+    if (steps) {
+        message = `Your password is weak. You can make it strong in ${steps} step(s)`;
+    }
+
 
     const validation = new PasswordValidation({
         password: data.password,
-        steps
+        steps,
+        message,
+        created: new Date
     });
 
-    const res = await validation.save();
+    await validation.save();
 
     if (steps) {
-        return NextResponse.json({message: `Your password is weak. You can make it strong in ${steps} step{s}`}, {status: 422});
+        return NextResponse.json({message}, {status: 422});
     }
 
-    return NextResponse.json({message: "Your password is strong!!"});
+    return NextResponse.json({message});
 }
 
 
 export async function GET(request: NextRequest) {
     connectDB()
+    const url = new URL(request.url);
 
-    return NextResponse.json(await PasswordValidation.find())
+    const page = parseInt(url.searchParams.get('page') || '1') ;
+
+    const options = {
+        limit: parseInt(url.searchParams.get('limit') || '10'),
+        skip: 0,
+    };
+
+    options.skip = (page - 1) * options.limit;
+    
+    const search = new RegExp(url.searchParams.get('search') || '', 'i');
+
+    const filters = [
+        {password: search}, 
+        {message: search}
+    ];
+
+
+    const query = PasswordValidation.find({$or: filters}, null, options);
+
+    query.sort('-created');
+
+
+
+    return NextResponse.json({
+        total: await PasswordValidation.countDocuments(),
+        passwords: await query
+    })
 }
