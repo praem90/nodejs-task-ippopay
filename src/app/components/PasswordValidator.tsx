@@ -32,7 +32,7 @@ export const PasswordValidator = ({onValidate}) => {
                 <input 
                     type="text" 
                     id="password" 
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" 
+                    className={`bg-gray-50 border text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 ${message.length && success === false ? "border-red-300" : "border-gray-300"}`} 
                     placeholder="Pasword" 
                     onChange={e => setPassword(e.target.value)}
                     name="password" />
